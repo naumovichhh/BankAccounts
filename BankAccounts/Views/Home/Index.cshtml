@@ -1,0 +1,41 @@
+﻿@model IEnumerable<BankAccounts.Entities.File>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Список загруженных файлов</h1>
+
+<p>
+    <a asp-action="UploadFile">Загрузить файл</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Файл
+            </th>
+            <th>
+                Название банка
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model)
+{
+        <tr>
+            <td>
+                @Html.ActionLink(item.Name, "ViewFile", new { id = item.Id })
+            </td>
+            <td>
+                @item.BankName
+            </td>
+            <td>
+                @Html.ActionLink("Сохранить в файл", "DownloadFile", new { id = item.Id }) |
+                @Html.ActionLink("Удалить", "DeleteFile", new { id = item.Id }) 
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

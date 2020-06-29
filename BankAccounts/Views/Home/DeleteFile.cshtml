@@ -1,0 +1,19 @@
+﻿@model BankAccounts.Entities.File
+
+@{
+    ViewData["Title"] = "DeleteFile";
+}
+
+<h1>Удаление файла</h1>
+
+<div>
+    <h5>Вы действительно хотите удалить файл @Model.Name?</h5>
+    @using (Html.BeginForm(null, null, FormMethod.Post))
+    {
+        Html.HiddenFor(m => m.Id);
+        <input type="submit" value="Да" class="btn btn-primary btn-width" />
+    }
+</div>
+<div>
+    <a asp-action="Index">К списку файлов</a>
+</div>

@@ -1,0 +1,89 @@
+﻿@model FileViewModel
+
+@{
+    ViewData["Title"] = "ViewFile";
+}
+
+<h1>@Model.Name</h1>
+
+<div>
+    <h4>@Model.BankName</h4>
+    <hr />
+    <table class="table">
+        <thead>
+            <tr>
+                <th class="align-center vertical-align-middle" rowspan="2">Б/сч</th>
+                <th class="align-center" colspan="2">Входящее сальдо</th>
+                <th class="align-center" colspan="2">Обороты</th>
+                <th class="align-center" colspan="2">Исходящее сальдо</th>
+            </tr>
+            <tr>
+                <th class="align-center">Актив</th>
+                <th class="align-center">Пассив</th>
+                <th class="align-center">Дебет</th>
+                <th class="align-center">Кредит</th>
+                <th class="align-center">Актив</th>
+                <th class="align-center">Пассив</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var cl in Model.Classes)
+            {
+            <tr>
+                <th colspan="7" class="align-center">
+                    @cl.Description
+                </th>
+            </tr>
+                foreach (var group in cl.Groups)
+                {
+                    foreach (var account in group.Accounts)
+                    {
+                        <tr>
+                            <td>@account.Number</td>
+                            <td>@account.Values[0].ToString("F2")</td>
+                            <td>@account.Values[1].ToString("F2")</td>
+                            <td>@account.Values[2].ToString("F2")</td>
+                            <td>@account.Values[3].ToString("F2")</td>
+                            <td>@account.Values[4].ToString("F2")</td>
+                            <td>@account.Values[5].ToString("F2")</td>
+                        </tr>
+                    }
+                    <tr>
+                        <th>@group.Number</th>
+                        <th>@group.Values[0].ToString("F2")</th>
+                        <th>@group.Values[1].ToString("F2")</th>
+                        <th>@group.Values[2].ToString("F2")</th>
+                        <th>@group.Values[3].ToString("F2")</th>
+                        <th>@group.Values[4].ToString("F2")</th>
+                        <th>@group.Values[5].ToString("F2")</th>
+                    </tr>
+                }
+                <tr>
+                    <th>По классу</th>
+                    <th>@cl.Values[0].ToString("F2")</th>
+                    <th>@cl.Values[1].ToString("F2")</th>
+                    <th>@cl.Values[2].ToString("F2")</th>
+                    <th>@cl.Values[3].ToString("F2")</th>
+                    <th>@cl.Values[4].ToString("F2")</th>
+                    <th>@cl.Values[5].ToString("F2")</th>
+                </tr>
+            }
+            <tr>
+                <th>Баланс</th>
+                <th>@Model.Values[0].ToString("F2")</th>
+                <th>@Model.Values[1].ToString("F2")</th>
+                <th>@Model.Values[2].ToString("F2")</th>
+                <th>@Model.Values[3].ToString("F2")</th>
+                <th>@Model.Values[4].ToString("F2")</th>
+                <th>@Model.Values[5].ToString("F2")</th>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<div>
+    @Html.ActionLink("Сохранить в файл", "DownloadFile", new { id = Model.Id }) |
+    @Html.ActionLink("Удалить", "DeleteFile", new { id = Model.Id }) |
+    <a asp-action="Index">К списку файлов</a>
+</div>
+
+

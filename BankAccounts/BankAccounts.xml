@@ -1,0 +1,92 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>BankAccounts</name>
+    </assembly>
+    <members>
+        <member name="M:BankAccounts.Helpers.ExcelHelper.SaveFileToDbAsync(System.IO.Stream,System.String)">
+            <summary>
+            Читает информацию из потока и сохраняет в базу данных
+            </summary>
+            <param name="stream">Поток, из которого считываются данные загружаемого файла</param>
+            <param name="fileName">Имя загружаемого файла</param>
+            <returns>Объект Task, который представляет асинхронную операцию</returns>
+        </member>
+        <member name="M:BankAccounts.Helpers.ExcelHelper.GetFileContentAsync(System.Int32)">
+            <summary>
+            Извлекает данные из файла в БД
+            </summary>
+            <param name="id">Идентификатор файла</param>
+            <returns>
+            Объект, представляющий асинхронную операцию с результатом 
+            в виде массива байтов
+            </returns>
+        </member>
+        <member name="M:BankAccounts.Helpers.ExcelHelper.DeleteFileAsync(System.Int32)">
+            <summary>
+            Удаляет файл из базы данных
+            </summary>
+            <param name="id">Идентификатор файла</param>
+            <returns>Объект, представляющий асинхронную операцию</returns>
+        </member>
+        <member name="M:BankAccounts.Helpers.ExcelHelper.GetFileViewAsync(System.Int32)">
+            <summary>
+            Конструирует представление данных файла
+            </summary>
+            <param name="fileId">Идентификатор файла</param>
+            <returns>
+            Объект, представляющий асинхронную операцию, с результатом
+            в виде представления файла
+            </returns>
+        </member>
+        <member name="M:BankAccounts.Helpers.ExcelHelper.IsAccount(ExcelDataReader.IExcelDataReader)">
+            <summary>
+            Проверяет, является ли считанная строка записью об аккаунте
+            </summary>
+            <param name="val0">Предполагаемая первая ячейка строки</param>
+            <param name="val1">Предполагаемая вторая ячейка строки</param>
+            <returns>Значение, определяющее, является ли строк</returns>
+        </member>
+        <member name="M:BankAccounts.Helpers.ExcelHelper.IsClass(ExcelDataReader.IExcelDataReader)">
+            <summary>
+            Проверяет, является ли считанная строка записью об классе
+            </summary>
+            <param name="val0"></param>
+            <returns></returns>
+        </member>
+        <member name="M:BankAccounts.Helpers.ExcelHelper.GetNextFileName(System.String)">
+            <summary>
+            Получает имя файла с номером повторившегося имени файла
+            </summary>
+            <param name="fileName">Имя файла</param>
+            <returns>Имя файла с номером повторившегося имени файла</returns>
+        </member>
+        <member name="M:BankAccounts.Helpers.ExcelHelper.CreateHeader(OfficeOpenXml.ExcelWorksheet)">
+            <summary>
+            Формирует заголовок и ширину колонок рабочего листа
+            </summary>
+            <param name="sheet">Рабочий лист</param>
+        </member>
+        <member name="M:BankAccounts.Helpers.ExcelHelper.LoadFile(System.String,System.String)">
+            <summary>
+            Загружает файл в репозиторий
+            </summary>
+            <param name="fileName">Имя файла</param>
+            <param name="bankName">Название банка</param>
+        </member>
+        <member name="M:BankAccounts.Helpers.ExcelHelper.LoadClass(System.String,System.Int32)">
+            <summary>
+            Загружает класс в репозиторий
+            </summary>
+            <param name="str">Строка описания класса</param>
+            <param name="fileId">Идентификатор файла</param>
+        </member>
+        <member name="M:BankAccounts.Helpers.ExcelHelper.LoadAccount(ExcelDataReader.IExcelDataReader,System.Int32)">
+            <summary>
+            Загружает аккаунт в репозиторий
+            </summary>
+            <param name="reader">Считыватель данных из Excel файла</param>
+            <param name="classId">Идентификатор класса</param>
+        </member>
+    </members>
+</doc>
