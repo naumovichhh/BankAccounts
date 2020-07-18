@@ -1,5 +1,3 @@
-using System;
-
 namespace BankAccounts.Models
 {
     public class ErrorViewModel

@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Linq;
 using Microsoft.EntityFrameworkCore;
 using BankAccounts.Entities;
 
@@ -15,7 +12,17 @@ namespace BankAccounts.Data
 
         public DefaultContext(DbContextOptions<DefaultContext> options) : base(options)
         {
+            Database.EnsureCreated();
+        }
 
+        protected override void OnModelCreating(ModelBuilder builder)
+        {
+            foreach (var property in builder.Model.GetEntityTypes()
+                .SelectMany(t => t.GetProperties())
+                .Where(p => p.ClrType == typeof(decimal) || p.ClrType == typeof(decimal?)))
+            {
+                property.SetColumnType("numeric(28,13)");
+            }
         }
     }
 }

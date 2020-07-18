@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace BankAccounts.Entities
 {
@@ -9,6 +6,8 @@ namespace BankAccounts.Entities
     {
         public int Id { get; set; }
         public int ClassId { get; set; }
+        [Required]
+        [MaxLength(10)]
         public string Number { get; set; }
         public decimal InActive { get; set; }
         public decimal InPassive { get; set; }
